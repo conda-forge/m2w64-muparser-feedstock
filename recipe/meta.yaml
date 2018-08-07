@@ -6,22 +6,25 @@ package:
 
 source:
   fn: v{{ version }}.tar.gz
-  url: https://github.com/beltoforion/muparser/archive/v{{ version }}.tar.gz 
+  url: https://github.com/beltoforion/muparser/archive/v{{ version }}.tar.gz
   md5: 02dae671aa5ad955fdcbcd3fee313fb7
   patches:
     - no-console.patch
     - 0001-Export-CXX-symbols.patch
 
 build:
-  number: 0
+  number: 1
   skip: true  # [not win or py3k]
 
 requirements:
   build:
-    - m2w64-toolchain
     - cmake
+    - {{ compiler('c') }}        # [unix]
+    - {{ compiler('m2w64_c') }}  # [win]
+    - {{ compiler('cxx') }}        # [unix]
+    - {{ compiler('m2w64_cxx') }}  # [win]
+  host:
   run:
-    - m2w64-gcc-libs
 
 test:
   commands:
