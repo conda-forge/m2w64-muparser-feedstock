@@ -1,4 +1,4 @@
-{% set version = "2.2.5" %}
+{% set version = "2.2.6" %}
 
 package:
   name: m2w64-muparser
@@ -7,13 +7,13 @@ package:
 source:
   fn: v{{ version }}.tar.gz
   url: https://github.com/beltoforion/muparser/archive/v{{ version }}.tar.gz
-  md5: 02dae671aa5ad955fdcbcd3fee313fb7
+  md5: f197b2815ca0422b2091788a78f2dc8a
   patches:
     - no-console.patch
     - 0001-Export-CXX-symbols.patch
 
 build:
-  number: 1
+  number: 0
   skip: true  # [not win or py3k]
 
 requirements:
