@@ -7,14 +7,13 @@ package:
 source:
   fn: v{{ version }}.tar.gz
   url: https://github.com/beltoforion/muparser/archive/v{{ version }}.tar.gz
-  md5: 410d29b4c58d1cdc2fc9ed1c1c7f67fe
+  sha256: d2562853d972b6ddb07af47ce8a1cdeeb8bb3fa9e8da308746de391db67897b3
   patches:
     - no-console.patch
-    - 0001-Export-CXX-symbols.patch
 
 build:
-  number: 0
-  skip: true  # [not win or py3k]
+  number: 1
+  skip: true  # [not win]
 
 requirements:
   build:
