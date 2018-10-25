@@ -2,10 +2,6 @@
 :: remove sh.exe from PATH
 set PATH=%PATH:C:\Program Files\Git\usr\bin;=%
 
-@rem See https://bitbucket.org/dbarbier/ot-superbuild
-copy "%RECIPE_DIR%\CMakeLists.txt" .
-if errorlevel 1 exit 1
-
 mkdir build_ && cd build_
 
 cmake -G "MinGW Makefiles" ^
