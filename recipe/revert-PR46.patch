@@ -1,0 +1,60 @@
+reverted:
+--- b/include/muParserBase.h
++++ a/include/muParserBase.h
+@@ -288,7 +288,7 @@
+     mutable stringbuf_type  m_vStringBuf; ///< String buffer, used for storing string function arguments
+     stringbuf_type  m_vStringVarBuf;
+ 
++    std::auto_ptr<token_reader_type> m_pTokenReader; ///< Managed pointer to the token reader object.
+-    std::unique_ptr<token_reader_type> m_pTokenReader; ///< Managed pointer to the token reader object.
+ 
+     funmap_type  m_FunDef;         ///< Map of function names and pointers.
+     funmap_type  m_PostOprtDef;    ///< Postfix operator callbacks
+reverted:
+--- b/include/muParserToken.h
++++ a/include/muParserToken.h
+@@ -69,7 +69,7 @@
+       TString m_strTok;   ///< Token string
+       TString m_strVal;   ///< Value for string variables
+       value_type m_fVal;  ///< the value 
++      std::auto_ptr<ParserCallback> m_pCallback;
+-      std::unique_ptr<ParserCallback> m_pCallback;
+ 
+   public:
+ 
+reverted:
+--- b/src/muParserTest.cpp
++++ a/src/muParserTest.cpp
+@@ -1258,7 +1258,7 @@
+ 
+       try
+       {
++        std::auto_ptr<Parser> p1;
+-        std::unique_ptr<Parser> p1;
+         Parser  p2, p3;   // three parser objects
+                           // they will be used for testing copy and assignment operators
+         // p1 is a pointer since i'm going to delete it in order to test if
+reverted:
+--- b/src/muParserTokenReader.cpp
++++ a/src/muParserTokenReader.cpp
+@@ -147,7 +147,7 @@
+   */
+   ParserTokenReader* ParserTokenReader::Clone(ParserBase *a_pParent) const
+   {
++    std::auto_ptr<ParserTokenReader> ptr(new ParserTokenReader(*this));
+-    std::unique_ptr<ParserTokenReader> ptr(new ParserTokenReader(*this));
+     ptr->SetParent(a_pParent);
+     return ptr.release();
+   }
+reverted:
+--- b/CMakeLists.txt
++++ a/CMakeLists.txt
+@@ -1,7 +1,5 @@
+ # CMake based on work from @xantares
++cmake_minimum_required (VERSION 2.8.12)
+-cmake_minimum_required (VERSION 3.1.0)
+-set(CMAKE_CXX_STANDARD 11)
+-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+ 
+ # By default, build in Release mode. Must appear before project() command
+ if (NOT DEFINED CMAKE_BUILD_TYPE)
