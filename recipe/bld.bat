@@ -2,6 +2,13 @@
 :: remove sh.exe from PATH
 set PATH=%PATH:C:\Program Files\Git\usr\bin;=%
 
+
+gcc.exe %RECIPE_DIR%\main.cxx -lstdc++
+if errorlevel 1 exit 1
+
+.\a.exe
+if errorlevel 1 exit 1
+
 mkdir build_ && cd build_
 
 cmake -G "MinGW Makefiles" ^
