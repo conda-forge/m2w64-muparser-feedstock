@@ -14,5 +14,5 @@ if errorlevel 1 exit 1
 mingw32-make install -j %CPU_COUNT%
 if errorlevel 1 exit 1
 
-start example1.exe
+ctest
 if errorlevel 1 exit 1
