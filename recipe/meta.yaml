@@ -1,4 +1,4 @@
-{% set version = "2.2.6.1" %}
+{% set version = "2.3.1" %}
 
 package:
   name: m2w64-muparser
@@ -7,13 +7,13 @@ package:
 source:
   fn: v{{ version }}.tar.gz
   url: https://github.com/beltoforion/muparser/archive/v{{ version }}.tar.gz
-  sha256: d2562853d972b6ddb07af47ce8a1cdeeb8bb3fa9e8da308746de391db67897b3
+  sha256: b076af992551313244fd5796b3ec1f565e7619213cb36e2e1a80d6efb4f4be51
   patches:
     - no-console.patch
     - revert-PR46.patch
 
 build:
-  number: 2
+  number: 0
   skip: true  # [not win]
 
 requirements:
